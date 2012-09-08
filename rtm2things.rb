@@ -34,7 +34,7 @@ RiCal.parse(STDIN).each do |cal|
 
     tags = []
     notes = []
-    rtm_attrs.strip.split("\n").each do |attr_line| # => "Time estimate: none\nTags: development, learning\nLocation: none\n\n"
+    rtm_attrs.strip.split("\n").each do |attr_line|
       case attr_line
       when /^Tags: (.*)/
         tags += $1.split(',').map { |t| t.strip.capitalize } unless $1 == 'none'
