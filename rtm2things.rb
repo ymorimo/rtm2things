@@ -63,6 +63,9 @@ RiCal.parse(STDIN).each do |cal|
                          name: rtm_todo.summary
                        })
 
+    todo.tag_names.set tags.join(", ") if tags.size > 0
+    todo.notes.set notes.join("\n") if notes.size > 0
+
     if rtm_todo.due
       due_date = rtm_todo.due
       if due_date.is_a? DateTime
@@ -72,9 +75,6 @@ RiCal.parse(STDIN).each do |cal|
       end
       todo.due_date.set due_date
     end
-
-    todo.tag_names.set tags.join(", ") if tags.size > 0
-    todo.notes.set notes.join("\n") if notes.size > 0
 
     if rtm_todo.completed
       # .to_time is required to handle timezone correctly
